@@ -29,7 +29,8 @@ import android.hardware.usb.UsbInterface;
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
   private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
-  private Context thisCon = cordova.getActivity().getWindow().getContext();
+  private Context thisCon;
+  // = cordova.getActivity().getWindow().getContext();
   // cordova.getActivity().getApplicationContext();
 
   private UsbManager mUsbManager = null;
@@ -58,6 +59,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     super.initialize(cordova, webView);
     this.sensorManager = (SensorManager) cordova.getActivity().getSystemService(Context.SENSOR_SERVICE);
     this.sensor = this.sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+    this.thisCon = cordova.getActivity().getApplicationContext();
   }
 
     @Override
