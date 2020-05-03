@@ -10,6 +10,7 @@ import org.json.JSONException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.BroadcastReceiver;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -84,6 +85,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
     IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
     filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+    this.thisCon.registerReceiver(this.mUsbReceiver, filter);
 
     this.InitSetting();
     // this.EnableBluetooth();
@@ -143,6 +145,62 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 		if(SettingValue.equals(""))			
 			PFun.WriteSharedPreferencesData("Feeds", "0");				
 	}
+
+  private BroadcastReceiver mUsbReceiver = new BroadcastReceiver() 
+	{
+	    public void onReceive(Context context, Intent intent) 
+	    {
+	    	try {
+		        String action = intent.getAction();	       
+		        if (ACTION_USB_PERMISSION.equals(action)){
+			        synchronized (this) 
+			        {		        	
+			            device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                  if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false))
+                  {			 
+                    if(Print.PortOpen(this.thisCon, device) != 0)
+                    {					
+                        // txtTips.setText(thisCon.getString(R.string.activity_main_connecterr));
+                        Log.e("DEBUG", "MAIN ACTIVITY ERROR CONNECT BOSS!");
+                        return;
+                    }
+                    else {
+                      // txtTips.setText(thisCon.getString(R.string.activity_main_connected));
+                      Log.e("DEBUG", "MAIN ACTIVITY CONNECTED");
+                    }
+                  }		
+                  else
+                  {			   
+                    Log.e("DEBUG", "ELSE USB PERMISSION!");     	
+                    return;
+                  }
+			        }
+			      }
+          
+          if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action))
+          {
+            device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+            if (device != null)
+            {
+              int count = device.getInterfaceCount();
+              for (int i = 0; i < count; i++)
+              {
+                UsbInterface intf = device.getInterface(i);
+                //Class ID 7代表打印机
+                if (intf.getInterfaceClass() == 7)
+                {
+                  Print.PortClose();
+                  // txtTips.setText(R.string.activity_main_tips);
+                  Log.e("DEBUG", "Port close call!");
+                }
+              }
+            }
+				  }
+			}catch (Exception e){
+	    		Log.e("HPRTSDKSample", (new StringBuilder("Activity_Main --> mUsbReceiver ")).append(e.getMessage()).toString());
+	    	}
+		}
+	};
 
   //EnableBluetooth
 	private boolean EnableBluetooth(){
