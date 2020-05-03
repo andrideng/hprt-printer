@@ -172,8 +172,8 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
             "Customer's payment      $1400.00\n",
             "Change                     $1.40\n"
           };
-          Log.e("DEBUG", ReceiptLines);
 					for(int i=0;i<ReceiptLines.length;i++) {
+            Log.e("DEBUG", ReceiptLines[i]);
             Print.PrintText(ReceiptLines[i]);
           }
           Log.e("DEBUG", "Finish After Loop");
