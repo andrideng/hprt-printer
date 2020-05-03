@@ -29,5 +29,9 @@
         target-dir="src/android/com/andrideng/plugin" />
         <source-file src="src/android/libs/Android_Print_SDK_ESC_V1.11.jar" 
         target-dir="libs" />
+        <source-file src="src/android/libs/x86_64/libprinter_model.so" target-dir="libs" />
+		<source-file src="src/android/libs/x86/libprinter_model.so" target-dir="libs" />
+        <source-file src="src/android/libs/armeabi/libprinter_model.so" target-dir="libs" />
+        <source-file src="src/android/libs/armeabi-v7a/libprinter_model.so" target-dir="libs" />
     </platform>
 </plugin>
