@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,9 +16,25 @@ import android.hardware.SensorManager;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import android.app.PendingIntent;
+
+import android.hardware.usb.UsbManager;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbInterface;
 
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
+  // - Hprt Printer
+  private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
+  private Context thisCon = this.cordova.getActivity().getApplicationContext();
 
+  private UsbManager mUsbManager = null;
+  private UsbDevice device = null;
+  private PendingIntent mPermissionIntent = PendingIntent.getBroadcast(thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
+
+  // - Temperature
   public static int STOPPED = 0;
   public static int STARTING = 1;
   public static int RUNNING = 2;
@@ -65,6 +82,38 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
   public void connect() {
     Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
+    mUsbManager = (UsbManager) thisCon.getSystemService(Context.USB_SERVICE);
+		HashMap<String, UsbDevice> deviceList = mUsbManager.getDeviceList();
+		Log.d("test", deviceList.toString());
+		Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+
+		boolean HavePrinter = false;
+		while(deviceIterator.hasNext())
+		{
+			device = deviceIterator.next();
+			int count = device.getInterfaceCount();
+			for (int i = 0; i < count; i++)
+			{
+				UsbInterface intf = device.getInterface(i);
+				if (intf.getInterfaceClass() == 7)
+				{
+					Log.d("PRINT_TAG", "vendorID--"
+							+ device.getVendorId() + "ProductId--"
+							+ device.getProductId() + "ProductName: "
+							+ device.getProductName() + "DeviceName: "
+							+ device.getDeviceName() + device.getManufacturerName()
+					);
+					HavePrinter=true;
+					mUsbManager.requestPermission(device, mPermissionIntent);
+				}
+			}
+		}
+		// Create the toast
+		if (HavePrinter) {
+			Toast.makeText(cordova.getActivity(), "YEAY FOUND IT!", Toast.LENGTH_LONG).show();	
+		} else {
+			Toast.makeText(cordova.getActivity(), "TRY AGAIN, YOU CAN DO IT!", Toast.LENGTH_LONG).show();
+		}
   }
 
   public void isDeviceCompatible() {
