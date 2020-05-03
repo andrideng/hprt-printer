@@ -15,3 +15,7 @@ exports.connectUsb = function(success, error) {
 exports.printSample = function(success, error) {
     exec(success, error, 'HprtPrinter', 'printSample');
 };
+
+exports.cutPaper = function(success, error) {
+    exec(success, error, 'HprtPrinter', 'cutPaper');
+}

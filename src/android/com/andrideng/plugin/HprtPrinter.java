@@ -99,6 +99,11 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
         return true;
       }
 
+      if ("cutPaper".equals(action)) {
+        this.cutPaper();
+        return true;
+      }
+
       return false;
     }
 
@@ -203,6 +208,15 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 			}
 		});
 	}
+
+  public void cutPaper() {
+    try {
+      Print.CutPaper(1);
+      Log.e("CUT-PAPER", "Succes cut paper!");
+    } catch (Exception e) {
+      Log.e("Print", (new StringBuilder("Activity_Main --> cutPaper ")).append(e.getMessage()).toString());
+    }
+  }
 
   public void isDeviceCompatible() {
     String msg = this.sensor != null ? "This device is compatible" : "Sorry, this device doesn't have a temperature sensor";
