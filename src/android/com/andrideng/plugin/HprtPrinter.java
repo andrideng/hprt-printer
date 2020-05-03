@@ -108,39 +108,43 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     }
 
   public void connect() {
-    // Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
-    mUsbManager = (UsbManager) thisCon.getSystemService(Context.USB_SERVICE);
-		HashMap<String, UsbDevice> deviceList = mUsbManager.getDeviceList();
-		Log.d("test", deviceList.toString());
-		Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+    try {
+      // Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
+      mUsbManager = (UsbManager) thisCon.getSystemService(Context.USB_SERVICE);
+      HashMap<String, UsbDevice> deviceList = mUsbManager.getDeviceList();
+      Log.d("test", deviceList.toString());
+      Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
 
-		boolean HavePrinter = false;
-		while(deviceIterator.hasNext())
-		{
-			device = deviceIterator.next();
-			int count = device.getInterfaceCount();
-			for (int i = 0; i < count; i++)
-			{
-				UsbInterface intf = device.getInterface(i);
-				if (intf.getInterfaceClass() == 7)
-				{
-					Log.d("PRINT_TAG", "vendorID--"
-							+ device.getVendorId() + "ProductId--"
-							+ device.getProductId() + "ProductName: "
-							+ device.getProductName() + "DeviceName: "
-							+ device.getDeviceName() + device.getManufacturerName()
-					);
-					HavePrinter=true;
-					mUsbManager.requestPermission(device, mPermissionIntent);
-				}
-			}
-		}
-		// Create the toast
-		if (HavePrinter) {
-			Toast.makeText(cordova.getActivity(), "YEAY FOUND IT!", Toast.LENGTH_LONG).show();
-		} else {
-			Toast.makeText(cordova.getActivity(), "TRY AGAIN, YOU CAN DO IT!", Toast.LENGTH_LONG).show();
-		}
+      boolean HavePrinter = false;
+      while(deviceIterator.hasNext())
+      {
+        device = deviceIterator.next();
+        int count = device.getInterfaceCount();
+        for (int i = 0; i < count; i++)
+        {
+          UsbInterface intf = device.getInterface(i);
+          if (intf.getInterfaceClass() == 7)
+          {
+            Log.d("PRINT_TAG", "vendorID--"
+                + device.getVendorId() + "ProductId--"
+                + device.getProductId() + "ProductName: "
+                + device.getProductName() + "DeviceName: "
+                + device.getDeviceName() + device.getManufacturerName()
+            );
+            HavePrinter=true;
+            mUsbManager.requestPermission(device, mPermissionIntent);
+          }
+        }
+      }
+      // Create the toast
+      if (HavePrinter) {
+        Toast.makeText(cordova.getActivity(), "YEAY FOUND IT!", Toast.LENGTH_LONG).show();
+      } else {
+        Toast.makeText(cordova.getActivity(), "TRY AGAIN, YOU CAN DO IT!", Toast.LENGTH_LONG).show();
+      }
+    } catch (Exception e) {
+      Log.e("Print", (new StringBuilder("this --> connect ")).append(e.getMessage()).toString());
+    }
   }
   
   private void printSample() {
