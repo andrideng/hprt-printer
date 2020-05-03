@@ -30,19 +30,25 @@
         <source-file src="src/android/libs/Android_Print_SDK_ESC_V1.11.jar" 
         target-dir="libs" />
         <source-file src="src/android/libs/armeabi/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/armeabi/" />
+        target-dir="jniLibs/armeabi/" />
+        
         <source-file src="src/android/libs/arm64-v8a/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/arm64-v8a/" />
+        target-dir="jniLibs/arm64-v8a/" />
+
         <source-file src="src/android/libs/armeabi-v7a/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/armeabi-v7a/" />
+        target-dir="jniLibs/armeabi-v7a/" />
+
         <source-file src="src/android/libs/mips/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/mips/" />
+        target-dir="jniLibs/mips/" />
+
         <source-file src="src/android/libs/mips64/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/mips64/" />
+        target-dir="jniLibs/mips64/" />
+
         <source-file src="src/android/libs/x86/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/x86/" />
+        target-dir="jniLibs/x86/" />
+
         <source-file src="src/android/libs/x86_64/libprinter_model.so" 
-        target-dir="app/src/main/jniLibs/x86_64/" />
+        target-dir="jniLibs/x86_64/" />
         <!-- <resource-file src="src/android/libs/armeabi/libLZO.so" 
         target="jniLibs/armeabi/libLZO.so" />
         <resource-file src="src/android/libs/armeabi/libprinter_helper_cmd.so" 
