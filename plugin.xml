@@ -32,31 +32,31 @@
 
         <source-file src="src/android/libs/armeabi/libprinter_model.so" 
         target-dir="jniLibs/armeabi/libprinter_model.so" />
-        <lib-file src="src/android/libs/armeabi/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/armeabi" arch="device" />
 
         <source-file src="src/android/libs/arm64-v8a/libprinter_model.so" 
         target-dir="jniLibs/arm64-v8a/libprinter_model.so" />
-        <lib-file src="src/android/libs/arm64-v8a/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/arm64-v8a" arch="device" />
 
         <source-file src="src/android/libs/armeabi-v7a/libprinter_model.so" 
         target-dir="jniLibs/armeabi-v7a/libprinter_model.so" />
-        <lib-file src="src/android/libs/armeabi-v7a/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/armeabi-v7a" arch="device" />
 
         <source-file src="src/android/libs/mips/libprinter_model.so" 
         target-dir="jniLibs/mips/libprinter_model.so" />
-        <lib-file src="src/android/libs/mips/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/mips" arch="device" />
 
         <source-file src="src/android/libs/mips64/libprinter_model.so" 
         target-dir="jniLibs/mips64/libprinter_model.so" />
-        <lib-file src="src/android/libs/mips64/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/mips64" arch="device" />
 
         <source-file src="src/android/libs/x86/libprinter_model.so" 
         target-dir="jniLibs/x86/libprinter_model.so" />
-        <lib-file src="src/android/libs/x86/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/x86" arch="device" />
 
         <source-file src="src/android/libs/x86_64/libprinter_model.so" 
         target-dir="jniLibs/x86_64/libprinter_model.so" />
-        <lib-file src="src/android/libs/x86_64/libprinter_model.so" arch="device" />
+        <lib-file src="src/android/libs/x86_64" arch="device" />
 
         <!-- <resource-file src="src/android/libs/armeabi/libLZO.so" 
         target="jniLibs/armeabi/libLZO.so" />
