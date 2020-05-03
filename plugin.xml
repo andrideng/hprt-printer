@@ -25,6 +25,8 @@
         </config-file>
         <source-file src="src/android/com/andrideng/plugin/HprtPrinter.java" 
         target-dir="src/android/com/andrideng/plugin" />
+        <source-file src="src/android/com/andrideng/plugin/PublicAction.java" 
+        target-dir="src/android/com/andrideng/plugin" />
         <source-file src="src/android/libs/Android_Print_SDK_ESC_V1.11.jar" 
         target-dir="libs" />
     </platform>
