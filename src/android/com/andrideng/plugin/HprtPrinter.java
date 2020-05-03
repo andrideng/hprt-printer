@@ -29,7 +29,8 @@ import android.hardware.usb.UsbInterface;
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
   private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
-  private Context thisCon = cordova.getActivity(); //.getApplicationContext();
+  private Context thisCon = cordova.getActivity().getWindow().getContext();
+  // cordova.getActivity().getApplicationContext();
 
   private UsbManager mUsbManager = null;
   private UsbDevice device = null;
