@@ -45,6 +45,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
   private ExecutorService executorService;
   private PublicAction PAct = null;
+  private PublicFunction PFun = null;
   private static IPort Printer = null;
 
   // - Temperature
@@ -73,6 +74,9 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     this.mPermissionIntent = PendingIntent.getBroadcast(this.thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
     this.executorService = Executors.newSingleThreadExecutor();
     this.PAct = new PublicAction(this.thisCon);
+    this.PFun = new PublicFunction(this.thisCon);
+
+    this.InitSetting();
   }
 
     @Override
@@ -106,6 +110,29 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
       return false;
     }
+
+  private void InitSetting() {
+		String SettingValue="";
+		SettingValue=PFun.ReadSharedPreferencesData("Codepage");
+		if(SettingValue.equals(""))		
+			PFun.WriteSharedPreferencesData("Codepage", "0,PC437(USA:Standard Europe)");			
+		
+		SettingValue=PFun.ReadSharedPreferencesData("Cut");
+		if(SettingValue.equals(""))		
+			PFun.WriteSharedPreferencesData("Cut", "0");	//
+			
+		SettingValue=PFun.ReadSharedPreferencesData("Cashdrawer");
+		if(SettingValue.equals(""))			
+			PFun.WriteSharedPreferencesData("Cashdrawer", "0");
+					
+		SettingValue=PFun.ReadSharedPreferencesData("Buzzer");
+		if(SettingValue.equals(""))			
+			PFun.WriteSharedPreferencesData("Buzzer", "0");
+					
+		SettingValue=PFun.ReadSharedPreferencesData("Feeds");
+		if(SettingValue.equals(""))			
+			PFun.WriteSharedPreferencesData("Feeds", "0");				
+	}
 
   public void connect() {
     try {
