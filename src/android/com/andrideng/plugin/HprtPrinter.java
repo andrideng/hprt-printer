@@ -332,8 +332,9 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 					// PAct.BeforePrintAction();
 					// Log.e("RESULT", message);
 					for(int i=0;i<arr.length();i++) {
-            Log.e("DATA", arr.getString(i));
-            Print.PrintText(arr[i]);
+            String result = arr.getString(i);
+            Log.e("DATA", result);
+            Print.PrintText(result);
           }
 					// PAct.AfterPrintAction();
           callbackContext.success(message);
