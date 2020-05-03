@@ -27,107 +27,107 @@
         target-dir="src/android/com/andrideng/plugin" />
         <source-file src="src/android/com/andrideng/plugin/PublicAction.java" 
         target-dir="src/android/com/andrideng/plugin" />
-        <source-file src="src/android/libs-v1.13/Android_Print_SDK_ESC_V1.13.jar" 
-        target-dir="libs" />
-        <!-- <source-file src="src/android/libs/Android_Print_SDK_ESC_V1.11.jar" 
+        <!-- <source-file src="src/android/libs-v1.13/Android_Print_SDK_ESC_V1.13.jar" 
         target-dir="libs" /> -->
+        <source-file src="src/android/libs/Android_Print_SDK_ESC_V1.11.jar" 
+        target-dir="libs" />
 
-        <!-- <source-file src="src/android/libs/armeabi/libprinter_model.so" 
+        <source-file src="src/android/libs/armeabi/libprinter_model.so" 
         target-dir="jniLibs/armeabi" />
         <source-file src="src/android/libs/armeabi/libLZO.so" 
         target-dir="jniLibs/armeabi" />
         <source-file src="src/android/libs/armeabi/libprinter_helper_cmd.so" 
         target-dir="jniLibs/armeabi" />
         <source-file src="src/android/libs/armeabi/libprt_serial_port.so" 
-        target-dir="jniLibs/armeabi" /> -->
-        <source-file src="src/android/libs-v1.13/armeabi/libLZO.so" 
+        target-dir="jniLibs/armeabi" />
+        <!-- <source-file src="src/android/libs-v1.13/armeabi/libLZO.so" 
         target-dir="jniLibs/armeabi" />
         <source-file src="src/android/libs-v1.13/armeabi/libprt_serial_port.so" 
-        target-dir="jniLibs/armeabi" />
-        <lib-file src="src/android/libs-v1.13/armeabi" arch="device" />
+        target-dir="jniLibs/armeabi" /> -->
+        <lib-file src="src/android/libs/armeabi" arch="device" />
 
-        <!-- <source-file src="src/android/libs/arm64-v8a/libprinter_model.so" 
+        <source-file src="src/android/libs/arm64-v8a/libprinter_model.so" 
         target-dir="jniLibs/arm64-v8a" />
         <source-file src="src/android/libs/arm64-v8a/libLZO.so" 
         target-dir="jniLibs/arm64-v8a" />
         <source-file src="src/android/libs/arm64-v8a/libprinter_helper_cmd.so" 
         target-dir="jniLibs/arm64-v8a" />
         <source-file src="src/android/libs/arm64-v8a/libprt_serial_port.so" 
-        target-dir="jniLibs/arm64-v8a" /> -->
-        <source-file src="src/android/libs-v1.13/arm64-v8a/libLZO.so" 
+        target-dir="jniLibs/arm64-v8a" />
+        <!-- <source-file src="src/android/libs-v1.13/arm64-v8a/libLZO.so" 
         target-dir="jniLibs/arm64-v8a" />
         <source-file src="src/android/libs-v1.13/arm64-v8a/libprt_serial_port.so" 
-        target-dir="jniLibs/arm64-v8a" />
-        <lib-file src="src/android/libs-v1.13/arm64-v8a" arch="device" />
+        target-dir="jniLibs/arm64-v8a" /> -->
+        <lib-file src="src/android/libs/arm64-v8a" arch="device" />
 
-        <!-- <source-file src="src/android/libs/armeabi-v7a/libprinter_model.so" 
+        <source-file src="src/android/libs/armeabi-v7a/libprinter_model.so" 
         target-dir="jniLibs/armeabi-v7a" />
         <source-file src="src/android/libs/armeabi-v7a/libLZO.so" 
         target-dir="jniLibs/armeabi-v7a" />
         <source-file src="src/android/libs/armeabi-v7a/libprinter_helper_cmd.so" 
         target-dir="jniLibs/armeabi-v7a" />
         <source-file src="src/android/libs/armeabi-v7a/libprt_serial_port.so" 
-        target-dir="jniLibs/armeabi-v7a" /> -->
-        <source-file src="src/android/libs-v1.13/armeabi-v7a/libLZO.so" 
+        target-dir="jniLibs/armeabi-v7a" />
+        <!-- <source-file src="src/android/libs-v1.13/armeabi-v7a/libLZO.so" 
         target-dir="jniLibs/armeabi-v7a" />
         <source-file src="src/android/libs-v1.13/armeabi-v7a/libprt_serial_port.so" 
-        target-dir="jniLibs/armeabi-v7a" />
-        <lib-file src="src/android/libs-v1.13/armeabi-v7a" arch="device" />
+        target-dir="jniLibs/armeabi-v7a" /> -->
+        <lib-file src="src/android/libs/armeabi-v7a" arch="device" />
 
-        <!-- <source-file src="src/android/libs/mips/libprinter_model.so" 
+        <source-file src="src/android/libs/mips/libprinter_model.so" 
         target-dir="jniLibs/mips" />
         <source-file src="src/android/libs/mips/libLZO.so" 
         target-dir="jniLibs/mips" />
         <source-file src="src/android/libs/mips/libprinter_helper_cmd.so" 
         target-dir="jniLibs/mips" />
         <source-file src="src/android/libs/mips/libprt_serial_port.so" 
-        target-dir="jniLibs/mips" /> -->
-        <source-file src="src/android/libs-v1.13/mips/libLZO.so" 
+        target-dir="jniLibs/mips" />
+        <!-- <source-file src="src/android/libs-v1.13/mips/libLZO.so" 
         target-dir="jniLibs/mips" />
         <source-file src="src/android/libs-v1.13/mips/libprt_serial_port.so" 
-        target-dir="jniLibs/mips" />
-        <lib-file src="src/android/libs-v1.13/mips" arch="device" />
+        target-dir="jniLibs/mips" /> -->
+        <lib-file src="src/android/libs/mips" arch="device" />
 
-        <!-- <source-file src="src/android/libs/mips64/libprinter_model.so" 
+        <source-file src="src/android/libs/mips64/libprinter_model.so" 
         target-dir="jniLibs/mips64" />
         <source-file src="src/android/libs/mips64/libLZO.so" 
         target-dir="jniLibs/mips64" />
         <source-file src="src/android/libs/mips64/libprinter_helper_cmd.so" 
         target-dir="jniLibs/mips64" />
         <source-file src="src/android/libs/mips64/libprt_serial_port.so" 
-        target-dir="jniLibs/mips64" /> -->
-        <source-file src="src/android/libs-v1.13/mips64/libLZO.so" 
+        target-dir="jniLibs/mips64" />
+        <!-- <source-file src="src/android/libs-v1.13/mips64/libLZO.so" 
         target-dir="jniLibs/mips64" />
         <source-file src="src/android/libs-v1.13/mips64/libprt_serial_port.so" 
-        target-dir="jniLibs/mips64" />
-        <lib-file src="src/android/libs-v1.13/mips64" arch="device" />
+        target-dir="jniLibs/mips64" /> -->
+        <lib-file src="src/android/libs/mips64" arch="device" />
 
-        <!-- <source-file src="src/android/libs/x86/libprinter_model.so" 
+        <source-file src="src/android/libs/x86/libprinter_model.so" 
         target-dir="jniLibs/x86" />
         <source-file src="src/android/libs/x86/libLZO.so" 
         target-dir="jniLibs/x86" />
         <source-file src="src/android/libs/x86/libprinter_helper_cmd.so" 
         target-dir="jniLibs/x86" />
         <source-file src="src/android/libs/x86/libprt_serial_port.so" 
-        target-dir="jniLibs/x86" /> -->
-        <source-file src="src/android/libs-v1.13/x86/libLZO.so" 
+        target-dir="jniLibs/x86" />
+        <!-- <source-file src="src/android/libs-v1.13/x86/libLZO.so" 
         target-dir="jniLibs/x86" />
         <source-file src="src/android/libs-v1.13/x86/libprt_serial_port.so" 
-        target-dir="jniLibs/x86" />
-        <lib-file src="src/android/libs-v1.13/x86" arch="device" />
+        target-dir="jniLibs/x86" /> -->
+        <lib-file src="src/android/libs/x86" arch="device" />
 
-        <!-- <source-file src="src/android/libs/x86_64/libprinter_model.so" 
+        <source-file src="src/android/libs/x86_64/libprinter_model.so" 
         target-dir="jniLibs/x86_64" />
         <source-file src="src/android/libs/x86_64/libLZO.so" 
         target-dir="jniLibs/x86_64" />
         <source-file src="src/android/libs/x86_64/libprinter_helper_cmd.so" 
         target-dir="jniLibs/x86_64" />
         <source-file src="src/android/libs/x86_64/libprt_serial_port.so" 
-        target-dir="jniLibs/x86_64" /> -->
-        <source-file src="src/android/libs-v1.13/x86_64/libLZO.so" 
+        target-dir="jniLibs/x86_64" />
+        <!-- <source-file src="src/android/libs-v1.13/x86_64/libLZO.so" 
         target-dir="jniLibs/x86_64" />
         <source-file src="src/android/libs-v1.13/x86_64/libprt_serial_port.so" 
-        target-dir="jniLibs/x86_64" />
-        <lib-file src="src/android/libs-v1.13/x86_64" arch="device" />
+        target-dir="jniLibs/x86_64" /> -->
+        <lib-file src="src/android/libs/x86_64" arch="device" />
     </platform>
 </plugin>
