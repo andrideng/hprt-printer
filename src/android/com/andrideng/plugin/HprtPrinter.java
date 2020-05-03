@@ -158,7 +158,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 			            device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
                   if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false))
                   {			 
-                    if(Print.PortOpen(this.thisCon, device) != 0)
+                    if(Print.PortOpen(thisCon, device) != 0)
                     {					
                         // txtTips.setText(thisCon.getString(R.string.activity_main_connecterr));
                         Log.e("DEBUG", "MAIN ACTIVITY ERROR CONNECT BOSS!");
