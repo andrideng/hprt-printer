@@ -19,3 +19,7 @@ exports.printSample = function(success, error) {
 exports.cutPaper = function(success, error) {
     exec(success, error, 'HprtPrinter', 'cutPaper');
 }
+
+exports.customPrint = function (arg0, success, error) {
+    exec(success, error, 'HprtPrinter', 'customPrint', [arg0]);
+};

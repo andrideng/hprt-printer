@@ -120,6 +120,12 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
         return true;
       }
 
+      if ("customPrint".equals(action)) {
+        String message = args.getString(0);
+        this.customPrint(message, callbackContext);
+        return true;
+      }
+
       return false;
     }
 
@@ -277,13 +283,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 			public void run() {
 				try {
 					Print.Initialize();
-          Log.e("DEBUG", "Finish Init");
-//					PAct.LanguageEncode();
-//					InputStream open = getResources().getAssets().open("test01.jpg");
-//					Bitmap bitmap = BitmapFactory.decodeStream(open);
-//					Print.PrintBitmap(bitmap,  (byte)1, (byte)0,200);
 					PAct.BeforePrintAction();
-          Log.e("DEBUG", "Finish before Print action");
 					String ReceiptLines [] = {
             "      Electronics\n",
             "     Technology Co., Ltd.\n",
@@ -312,26 +312,34 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
           Log.e("DEBUG", "Finish After Loop");
 					PAct.AfterPrintAction();
           Log.e("DEBUG", "Finish After Print Action");
-//					InputStream open2 = getResources().getAssets().open("test02.png");
-//					Bitmap bitmap2 = BitmapFactory.decodeStream(open2);
-//					Print.PrintBitmap(bitmap2,  (byte)1, (byte)0,200);
-//					HPRTPrinterHelper.SelectCharacterFont((byte) 1);
-//					PublicFunction PFunz=new PublicFunction(Main4Activity.this);
-//					String sLanguage="Iran"; String sLEncode="iso-8859-6";
-//					int intLanguageNum=56; sLEncode=PFunz.getLanguageEncode(sLanguage);
-//					intLanguageNum= PFunz.getCodePageIndex(sLanguage); HPRTPrinterHelper.SetCharacterSet((byte)intLanguageNum);
-//					HPRTPrinterHelper.LanguageEncode=sLEncode;
-					//HPRTPrinterHelper.SetCharacterSet Returns -3 HPRTPrinterHelper.PrintText("این یک پیام برای تست میباشد.\r\n");
-					//SDK下发指令设置codepage
-//					HPRTPrinterHelper.SetCharacterSet((byte)56);
-//					//设置编码
-//					HPRTPrinterHelper.LanguageEncode="iso-8859-6";
-//					HPRTPrinterHelper.PrintText("این یک پیام برای تست میباشد.\r\n");
-
 				}
 				catch(Exception e)
 				{
 					Log.e("Print", (new StringBuilder("Activity_Main --> PrintSampleReceipt ")).append(e.getMessage()).toString());
+				}
+			}
+		});
+	}
+
+  private void customPrint(String message, CallbackContext callbackContext) {
+		executorService.execute(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					// Print.Initialize();
+					// PAct.BeforePrintAction();
+					// Log.e("RESULT", message);
+					// for(int i=0;i<ReceiptLines.length;i++) {
+            // Print.PrintText(ReceiptLines[i]);
+          // }
+					// PAct.AfterPrintAction();
+          callbackContext.success(message);
+				}
+				catch(Exception e)
+				{
+          String errMsg = (new StringBuilder("Activity_Main --> PrintSampleReceipt ")).append(e.getMessage()).toString();
+          callbackContext.error("Failed when try custom print because: " + errMsg);
+					Log.e("Print", errMsg);
 				}
 			}
 		});
@@ -412,11 +420,11 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
   @Override
   public void onDestroy () {
-      this.stop();
+      // this.stop();
   }
 
   @Override
   public void onReset () {
-      this.stop();
+      // this.stop();
   }
 }
