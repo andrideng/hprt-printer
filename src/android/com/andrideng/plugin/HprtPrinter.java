@@ -36,7 +36,7 @@ import print.PublicFunction;
 
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
-  private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
+  private static final String ACTION_USB_PERMISSION = "com.PRINTSDKSample";
   private Context thisCon;
 
   private UsbManager mUsbManager = null;
