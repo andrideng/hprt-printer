@@ -28,6 +28,9 @@ import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbInterface;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+
 import HPRTAndroidSDK.HPRTPrinterHelper;
 import HPRTAndroidSDK.IPort;
 import print.Print;
@@ -47,6 +50,8 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   private PublicAction PAct = null;
   private PublicFunction PFun = null;
   private static IPort Printer = null;
+
+  private BluetoothAdapter mBluetoothAdapter;
 
   // - Temperature
   public static int STOPPED = 0;
@@ -77,6 +82,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     this.PFun = new PublicFunction(this.thisCon);
 
     this.InitSetting();
+    this.EnableBluetooth();
   }
 
     @Override
@@ -133,6 +139,35 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 		if(SettingValue.equals(""))			
 			PFun.WriteSharedPreferencesData("Feeds", "0");				
 	}
+
+  //EnableBluetooth
+	private boolean EnableBluetooth(){
+        boolean bRet = false;
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if(mBluetoothAdapter != null) {
+            if(mBluetoothAdapter.isEnabled())
+                return true;
+            mBluetoothAdapter.enable();
+            try 
+            {
+              Thread.sleep(500);
+            } 
+            catch (InterruptedException e) 
+            {			
+              e.printStackTrace();
+            }
+            if(!mBluetoothAdapter.isEnabled())
+            {
+                bRet = true;
+                Log.d("PRTLIB", "BTO_EnableBluetooth --> Open OK");
+            }
+        } 
+        else
+        {
+        	Log.d("HPRTSDKSample", (new StringBuilder("Activity_Main --> EnableBluetooth ").append("Bluetooth Adapter is null.")).toString());
+        }
+        return bRet;
+    }
 
   public void connect() {
     try {
