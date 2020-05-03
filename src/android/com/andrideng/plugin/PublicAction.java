@@ -21,7 +21,9 @@ public class PublicAction
 	{
 		try
 		{
-			Print.LanguageEncode="gb2312";
+			// Print.LanguageEncode="gb2312";
+            Print.LanguageEncode = "GBK";
+            Log.e("DEBUG", "set Language");
 		}
 		catch(Exception e)
 		{
