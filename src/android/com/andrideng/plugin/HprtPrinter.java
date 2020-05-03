@@ -339,7 +339,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
   public void cutPaper() {
     try {
-      Print.CutPaper(Print.FULL_CUT);
+      Print.CutPaper(Print.FULL_CUT_FEED);
       Log.e("CUT-PAPER", "Succes cut paper!");
     } catch (Exception e) {
       Log.e("Print", (new StringBuilder("Activity_Main --> cutPaper ")).append(e.getMessage()).toString());
