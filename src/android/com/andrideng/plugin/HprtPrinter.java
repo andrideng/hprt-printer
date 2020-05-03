@@ -30,7 +30,7 @@ import android.hardware.usb.UsbInterface;
 
 import print.Print;
 import print.PublicFunction;
-import print.PublicAction;
+import rx.functions.Action1;
 
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
