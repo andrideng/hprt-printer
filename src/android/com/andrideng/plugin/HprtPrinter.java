@@ -28,9 +28,10 @@ import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbInterface;
 
+import HPRTAndroidSDK.HPRTPrinterHelper;
 import print.Print;
 import print.PublicFunction;
-import rx.functions.Action1;
+// import rx.functions.Action1;
 
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
