@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-andrideng-cordova-temperature-plugin" 
+        version="0.0.1" 
+        xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>HprtPrinter</name>
+    
+    <js-module name="HprtPrinter" src="www/HprtPrinter.js">
+        <clobbers target="cordova.plugins.HprtPrinter" />
+    </js-module>
+
+    <asset src="www/HprtPrinter.js" target="js/HprtPrinter.js"/>
+
+    <engines>
+        <engine name="cordova" version=">=3.4.0"/>
+    </engines>
+
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="HprtPrinter">
+            <param name="android-package"
+                    value="com.andrident.plugin.HprtPrinter"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/com/andrideng/plugin/HprtPrinter.java" 
+        target-dir="src/android/com/andrideng/plugin" />
+    </platform>
+</plugin>
