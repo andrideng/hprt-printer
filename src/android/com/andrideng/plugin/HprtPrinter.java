@@ -285,25 +285,25 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 					PAct.BeforePrintAction();
           Log.e("DEBUG", "Finish before Print action");
 					String ReceiptLines [] = {
-            "      Electronics",
-            "     Technology Co., Ltd.",
-            "",
-            "TEL +86-(0)592-5885991",
-            "                             C#2",
-            "         2013-08-20",
-            "LPA                   $333.00",
-            "--------------------------------",
-            "LPB                  $444.00",
-            "--------------------------------",
-            "LPC                    $555.00",
-            "--------------------------------",
-            "",
-            "Before adding tax       $1332.00",
-            "tax   5.0%                $66.60",
-            "--------------------------------",
-            "total                   $1398.60",
-            "Customer's payment      $1400.00",
-            "Change                     $1.40"
+            "      Electronics\n",
+            "     Technology Co., Ltd.\n",
+            "\n",
+            "TEL +86-(0)592-5885991\n",
+            "                             C#2\n",
+            "         2013-08-20\n",
+            "LPA                   $333.00\n",
+            "--------------------------------\n",
+            "LPB                  $444.00\n",
+            "--------------------------------\n",
+            "LPC                    $555.00\n",
+            "--------------------------------\n",
+            "\n",
+            "Before adding tax       $1332.00\n",
+            "tax   5.0%                $66.60\n",
+            "--------------------------------\n",
+            "total                   $1398.60\n",
+            "Customer's payment      $1400.00\n",
+            "Change                     $1.40\n"
           };
 					for(int i=0;i<ReceiptLines.length;i++) {
             Log.e("DEBUG", ReceiptLines[i]);
