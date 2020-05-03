@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -81,8 +82,11 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     this.PAct = new PublicAction(this.thisCon);
     this.PFun = new PublicFunction(this.thisCon);
 
+    IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+    filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+
     this.InitSetting();
-    this.EnableBluetooth();
+    // this.EnableBluetooth();
   }
 
     @Override
