@@ -28,12 +28,12 @@ import android.hardware.usb.UsbInterface;
 
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
-  private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
-  private Context thisCon = this.cordova.getActivity().getApplicationContext();
+  // private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
+  // private Context thisCon = this.cordova.getActivity().getApplicationContext();
 
-  private UsbManager mUsbManager = null;
-  private UsbDevice device = null;
-  private PendingIntent mPermissionIntent = PendingIntent.getBroadcast(thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
+  // private UsbManager mUsbManager = null;
+  // private UsbDevice device = null;
+  // private PendingIntent mPermissionIntent = PendingIntent.getBroadcast(thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
 
   // - Temperature
   public static int STOPPED = 0;
