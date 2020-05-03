@@ -7,3 +7,7 @@ exports.checkTemperature = function(success, error) {
 exports.isDeviceCompatible = function(success, error) {
     exec(success, error, 'HprtPrinter', 'isDeviceCompatible');
 };
+
+exports.connectUsb = function(success, error) {
+    exec(success, error, 'HprtPrinter', 'connectUsb');
+};

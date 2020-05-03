@@ -55,9 +55,17 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
          return true;
       }
 
+      if("connectUsb".equals(action)) {
+        this.connect();
+        return true;
+      }
+
       return false;
     }
 
+  public void connect() {
+    Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
+  }
 
   public void isDeviceCompatible() {
     String msg = this.sensor != null ? "This device is compatible" : "Sorry, this device doesn't have a temperature sensor";
