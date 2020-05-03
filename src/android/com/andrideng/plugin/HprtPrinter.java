@@ -45,6 +45,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 
   private ExecutorService executorService;
   private PublicAction PAct = null;
+  private static IPort Printer = null;
 
   // - Temperature
   public static int STOPPED = 0;
@@ -102,7 +103,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     }
 
   public void connect() {
-    Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
+    // Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
     mUsbManager = (UsbManager) thisCon.getSystemService(Context.USB_SERVICE);
 		HashMap<String, UsbDevice> deviceList = mUsbManager.getDeviceList();
 		Log.d("test", deviceList.toString());
@@ -143,11 +144,13 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 			public void run() {
 				try {
 					Print.Initialize();
+          Log.e("DEBUG", "Finish Init");
 //					PAct.LanguageEncode();
 //					InputStream open = getResources().getAssets().open("test01.jpg");
 //					Bitmap bitmap = BitmapFactory.decodeStream(open);
 //					Print.PrintBitmap(bitmap,  (byte)1, (byte)0,200);
 					PAct.BeforePrintAction();
+          Log.e("DEBUG", "Finish before Print action");
 					String ReceiptLines [] = {
             "      Electronics\n",
             "     Technology Co., Ltd.\n",
@@ -169,10 +172,13 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
             "Customer's payment      $1400.00\n",
             "Change                     $1.40\n"
           };
+          Log.e("DEBUG", ReceiptLines);
 					for(int i=0;i<ReceiptLines.length;i++) {
             Print.PrintText(ReceiptLines[i]);
           }
+          Log.e("DEBUG", "Finish After Loop");
 					PAct.AfterPrintAction();
+          Log.e("DEBUG", "Finish After Print Action");
 //					InputStream open2 = getResources().getAssets().open("test02.png");
 //					Bitmap bitmap2 = BitmapFactory.decodeStream(open2);
 //					Print.PrintBitmap(bitmap2,  (byte)1, (byte)0,200);
