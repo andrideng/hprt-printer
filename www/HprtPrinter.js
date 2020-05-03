@@ -11,3 +11,7 @@ exports.isDeviceCompatible = function(success, error) {
 exports.connectUsb = function(success, error) {
     exec(success, error, 'HprtPrinter', 'connectUsb');
 };
+
+exports.printSample = function(success, error) {
+    exec(success, error, 'HprtPrinter', 'printSample');
+};

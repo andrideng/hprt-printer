@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import android.util.Log;
 import android.app.PendingIntent;
@@ -25,6 +27,9 @@ import android.app.PendingIntent;
 import android.hardware.usb.UsbManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbInterface;
+
+import print.Print;
+import print.PublicFunction;
 
 public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
@@ -34,6 +39,9 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   private UsbManager mUsbManager = null;
   private UsbDevice device = null;
   private PendingIntent mPermissionIntent;
+
+  private ExecutorService executorService;
+  private PublicAction PAct = null;
 
   // - Temperature
   public static int STOPPED = 0;
@@ -59,6 +67,8 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     this.sensor = this.sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
     this.thisCon = cordova.getActivity().getApplicationContext();
     this.mPermissionIntent = PendingIntent.getBroadcast(this.thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
+    this.executorService = Executors.newSingleThreadExecutor();
+    this.PAct = new PublicAction(this.thisCon);
   }
 
     @Override
@@ -75,8 +85,13 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
          return true;
       }
 
-      if("connectUsb".equals(action)) {
+      if ("connectUsb".equals(action)) {
         this.connect();
+        return true;
+      }
+
+      if ("printSample".equals(action)) {
+        this.printSample();
         return true;
       }
 
@@ -118,6 +133,67 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 			Toast.makeText(cordova.getActivity(), "TRY AGAIN, YOU CAN DO IT!", Toast.LENGTH_LONG).show();
 		}
   }
+  
+  private void printSample() {
+		executorService.execute(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Print.Initialize();
+//					PAct.LanguageEncode();
+//					InputStream open = getResources().getAssets().open("test01.jpg");
+//					Bitmap bitmap = BitmapFactory.decodeStream(open);
+//					Print.PrintBitmap(bitmap,  (byte)1, (byte)0,200);
+					PAct.BeforePrintAction();
+					String ReceiptLines [] = {
+            "      Electronics\n",
+            "     Technology Co., Ltd.\n",
+            "\n",
+            "TEL +86-(0)592-5885991\n",
+            "                             C#2\n",
+            "         2013-08-20\n",
+            "LPA                   $333.00\n",
+            "--------------------------------\n",
+            "LPB                  $444.00\n",
+            "--------------------------------\n",
+            "LPC                    $555.00\n",
+            "--------------------------------\n",
+            "\n",
+            "Before adding tax       $1332.00\n",
+            "tax   5.0%                $66.60\n",
+            "--------------------------------\n",
+            "total                   $1398.60\n",
+            "Customer's payment      $1400.00\n",
+            "Change                     $1.40\n"
+          };
+					for(int i=0;i<ReceiptLines.length;i++) {
+            Print.PrintText(ReceiptLines[i]);
+          }
+					PAct.AfterPrintAction();
+//					InputStream open2 = getResources().getAssets().open("test02.png");
+//					Bitmap bitmap2 = BitmapFactory.decodeStream(open2);
+//					Print.PrintBitmap(bitmap2,  (byte)1, (byte)0,200);
+//					HPRTPrinterHelper.SelectCharacterFont((byte) 1);
+//					PublicFunction PFunz=new PublicFunction(Main4Activity.this);
+//					String sLanguage="Iran"; String sLEncode="iso-8859-6";
+//					int intLanguageNum=56; sLEncode=PFunz.getLanguageEncode(sLanguage);
+//					intLanguageNum= PFunz.getCodePageIndex(sLanguage); HPRTPrinterHelper.SetCharacterSet((byte)intLanguageNum);
+//					HPRTPrinterHelper.LanguageEncode=sLEncode;
+					//HPRTPrinterHelper.SetCharacterSet Returns -3 HPRTPrinterHelper.PrintText("این یک پیام برای تست میباشد.\r\n");
+					//SDK下发指令设置codepage
+//					HPRTPrinterHelper.SetCharacterSet((byte)56);
+//					//设置编码
+//					HPRTPrinterHelper.LanguageEncode="iso-8859-6";
+//					HPRTPrinterHelper.PrintText("این یک پیام برای تست میباشد.\r\n");
+
+				}
+				catch(Exception e)
+				{
+					Log.e("Print", (new StringBuilder("Activity_Main --> PrintSampleReceipt ")).append(e.getMessage()).toString());
+				}
+			}
+		});
+	}
 
   public void isDeviceCompatible() {
     String msg = this.sensor != null ? "This device is compatible" : "Sorry, this device doesn't have a temperature sensor";
