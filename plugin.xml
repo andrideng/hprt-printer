@@ -31,11 +31,11 @@
         target-dir="libs" />
         <resource-file src="src/android/libs/armeabi/libprinter_model.so" 
         target="jniLibs/armeabi/libprinter_model.so" />
-        <resource-file src="src/android/libs/armeabi/libLZO.so" 
+        <!-- <resource-file src="src/android/libs/armeabi/libLZO.so" 
         target="jniLibs/armeabi/libLZO.so" />
         <resource-file src="src/android/libs/armeabi/libprinter_helper_cmd.so" 
         target="jniLibs/armeabi/libprinter_helper_cmd.so" />
         <resource-file src="src/android/libs/armeabi/libprt_serial_port.so" 
-        target="jniLibs/armeabi/libprt_serial_port.so" />
+        target="jniLibs/armeabi/libprt_serial_port.so" /> -->
     </platform>
 </plugin>
