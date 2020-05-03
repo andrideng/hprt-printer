@@ -30,12 +30,10 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
   // - Hprt Printer
   private static final String ACTION_USB_PERMISSION = "com.andrideng.plugin";
   private Context thisCon;
-  // = cordova.getActivity().getWindow().getContext();
-  // cordova.getActivity().getApplicationContext();
 
   private UsbManager mUsbManager = null;
   private UsbDevice device = null;
-  private PendingIntent mPermissionIntent = PendingIntent.getBroadcast(thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
+  private PendingIntent mPermissionIntent;
 
   // - Temperature
   public static int STOPPED = 0;
@@ -60,6 +58,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
     this.sensorManager = (SensorManager) cordova.getActivity().getSystemService(Context.SENSOR_SERVICE);
     this.sensor = this.sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
     this.thisCon = cordova.getActivity().getApplicationContext();
+    this.mPermissionIntent = PendingIntent.getBroadcast(this.thisCon, 0, new Intent(ACTION_USB_PERMISSION), 0);
   }
 
     @Override
