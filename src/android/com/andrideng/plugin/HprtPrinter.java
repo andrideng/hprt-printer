@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import android.util.Log;
 import android.app.PendingIntent;
 
 import android.hardware.usb.UsbManager;
