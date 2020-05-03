@@ -20,7 +20,7 @@
         <config-file target="config.xml" parent="/*">
             <feature name="HprtPrinter">
             <param name="android-package"
-                    value="com.andrident.plugin.HprtPrinter"/>
+                    value="com.andrideng.plugin.HprtPrinter"/>
             </feature>
         </config-file>
         <source-file src="src/android/com/andrideng/plugin/HprtPrinter.java" 
