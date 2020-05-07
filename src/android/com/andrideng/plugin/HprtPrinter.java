@@ -106,7 +106,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
       }
 
       if ("connectUsb".equals(action)) {
-        this.connect();
+        this.connect(callbackContext);
         return true;
       }
 
@@ -237,7 +237,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
         return bRet;
     }
 
-  public void connect() {
+  public void connect(CallbackContext callbackContext) {
     try {
       // Toast.makeText(cordova.getActivity(), "We are in the connect function", Toast.LENGTH_LONG).show();
       mUsbManager = (UsbManager) thisCon.getSystemService(Context.USB_SERVICE);
@@ -268,9 +268,11 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
       }
       // Create the toast
       if (HavePrinter) {
-        Toast.makeText(cordova.getActivity(), "YEAY FOUND IT!", Toast.LENGTH_LONG).show();
+        callbackContext.success("SUCCESS_CONNECT_USB");
+        // Toast.makeText(cordova.getActivity(), "YEAY FOUND IT!", Toast.LENGTH_LONG).show();
       } else {
-        Toast.makeText(cordova.getActivity(), "TRY AGAIN, YOU CAN DO IT!", Toast.LENGTH_LONG).show();
+        callbackContext.error("FAILED_CONNECT_USB");
+        // Toast.makeText(cordova.getActivity(), "TRY AGAIN, YOU CAN DO IT!", Toast.LENGTH_LONG).show();
       }
     } catch (Exception e) {
       Log.e("Print", (new StringBuilder("this --> connect ")).append(e.getMessage()).toString());
