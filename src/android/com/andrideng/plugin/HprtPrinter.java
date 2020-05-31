@@ -335,8 +335,20 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
 					// Log.e("RESULT", message);
 					for(int i=0;i<arr.length();i++) {
             String result = arr.getString(i);
+            String[] split = result.split(";");
             Log.e("DATA", result);
-            Print.PrintText(result);
+            if (split.length > 1) {
+              // PrintText(String data,int alignment,int attribute,int textSize)
+              // 0 - 1
+              // 0 - 15
+              // 0 To 7, 16 To 23, 32 To 39, 48 To 55, 64 To 71, 80 To 87, 96 To 103, 112 To 119;
+              int alignment = Integer.parseInt(split[1]); 
+              int attribute = Integer.parseInt(split[2]); 
+              int textSize = Integer.parseInt(split[3]);  
+              Print.PrintText(split[0], alignment, attribute, textSize);
+            } else {
+              Print.PrintText(split[0]);
+            }
           }
 					// PAct.AfterPrintAction();
           callbackContext.success(message);
