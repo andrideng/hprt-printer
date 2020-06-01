@@ -361,8 +361,13 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
                   connection.connect();
                   InputStream input = connection.getInputStream();
                   Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                  
                   // - call printer
-                  Print.PrintBitmap(myBitmap, 0, 0);
+                  Print.PrintBitmap(
+                    Utility.Tobitmap(myBitmap, 576, Utility.getHeight(576, myBitmap.getWidth(), myBitmap.getHeight())), 
+                    0, 
+                    0
+                  );
                 } catch (IOException e) {
                     // Log exception
                     String errMsg = (new StringBuilder("Activity_Main --> PrintBitmapLZO ")).append(e.getMessage()).toString();
