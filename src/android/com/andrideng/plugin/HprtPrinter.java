@@ -375,7 +375,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
                     Log.e("Print", errMsg);
                 }
             } else {
-              Print.PrintText(split[0]);
+              Print.PrintText(split[0], 0, 0, 0);
             }
           }
 					// PAct.AfterPrintAction();
