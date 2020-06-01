@@ -22,6 +22,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.io.InputStream;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import android.util.Log;
 import android.app.PendingIntent;
