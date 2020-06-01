@@ -25,6 +25,7 @@ import java.util.concurrent.Executors;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.InputStream;
+import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
