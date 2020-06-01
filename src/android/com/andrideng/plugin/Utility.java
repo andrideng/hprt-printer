@@ -8,8 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import java.io.File;
