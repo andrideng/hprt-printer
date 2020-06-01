@@ -337,7 +337,7 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
             String result = arr.getString(i);
             String[] split = result.split(";");
             Log.e("DATA", result);
-            if (split.length > 1) {
+            if (split.length === 4) {
               // PrintText(String data,int alignment,int attribute,int textSize)
               // 0 - 1
               // 0 - 15
@@ -346,6 +346,22 @@ public class HprtPrinter extends CordovaPlugin implements SensorEventListener {
               int attribute = Integer.parseInt(split[2]); 
               int textSize = Integer.parseInt(split[3]);  
               Print.PrintText(split[0], alignment, attribute, textSize);
+            } else if (split[0].startsWith("http")) {
+                try {
+                  URL url = new URL(split[0]);
+                  HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                  connection.setDoInput(true);
+                  connection.connect();
+                  InputStream input = connection.getInputStream();
+                  Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                  // - call printer
+                  Print.PrintBitmapLZO(myBitmap, 0);
+                } catch (IOException e) {
+                    // Log exception
+                    String errMsg = (new StringBuilder("Activity_Main --> PrintBitmapLZO ")).append(e.getMessage()).toString();
+                    callbackContext.error("Failed when try print bitmap: " + errMsg);
+                    Log.e("Print", errMsg);
+                }
             } else {
               Print.PrintText(split[0]);
             }
